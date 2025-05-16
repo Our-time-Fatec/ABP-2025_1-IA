@@ -5,10 +5,10 @@ import rasterio
 from rasterio.coords import BoundingBox
 from rasterio.windows import from_bounds
 from PIL import Image, ImageDraw
-from src.utils.download_util import baixar_arquivo
-from src.utils.model import get_unet_model
+from app.utils.download_util import baixar_arquivo
+from app.utils.model import get_unet_model
 import matplotlib.pyplot as plt
-from src.schemas import MLProcessRequest
+from schemas.schemas import MLProcessRequest
 
 # Cores das classes
 COLORS = {
