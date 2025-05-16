@@ -1,9 +1,9 @@
 from fastapi import FastAPI, HTTPException
 from src.schemas import ImageInput, NDVIInput, RGBInput, MLProcessRequest
-from src.model.test.inference import run_inference_from_cog_url as run_inference
-from src.model.test.nvdi import run_ndvi_pipeline
-from src.model.test.rgb_segment import run_rgb_segmentation
-from src.model.services.nvdi_pipeline import processar_imagem_completa
+from src.controllers.test.inference import run_inference_from_cog_url as run_inference
+from src.controllers.test.nvdi import run_ndvi_pipeline
+from src.controllers.test.rgb_segment import run_rgb_segmentation
+from src.controllers.services.nvdi_pipeline import processar_imagem_completa
 
 app = FastAPI()
 
