@@ -1,0 +1,41 @@
+# Ambiente virtual
+venv/
+.venv/
+
+# Cache Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Arquivos temporários de execução
+*.log
+*.tmp
+*.bak
+*.swp
+*.DS_Store
+
+# Cache de pacotes
+*.egg-info/
+dist/
+build/
+pip-wheel-metadata/
+
+# Dados e saídas geradas
+output/
+src/data/raw/
+src/data/processed/
+*.tif
+*.png
+*.jpg
+*.jpeg
+
+# Editor / IDEs
+.vscode/
+.idea/
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# Arquivos para manter pastas vazias (deixe intencionalmente)
+**/.gitkeep
