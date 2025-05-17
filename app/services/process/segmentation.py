@@ -61,6 +61,50 @@ def predict_full_image(ndvi, model_path, tile_size, stride):
 
     print("🔄 Modelo carregado, iniciando varredura por tiles...")
 
+    # Calcular total de tiles
+    num_tiles_y = (h - 1) // stride + 1
+    num_tiles_x = (w - 1) // stride + 1
+    total_tiles = num_tiles_y * num_tiles_x
+    current_tile = 0
+
+    with torch.no_grad():
+        for i in range(0, h, stride):
+            for j in range(0, w, stride):
+                current_tile += 1
+                i_end, j_end = min(i + tile_size, h), min(j + tile_size, w)
+                tile = ndvi[i:i_end, j:j_end]
+                tile_padded = np.pad(tile, ((0, tile_size - tile.shape[0]), (0, tile_size - tile.shape[1])), mode='constant')
+
+                # Progresso
+                porcentagem = (current_tile / total_tiles) * 100
+                print(f"🧩 Tile {current_tile}/{total_tiles} ({porcentagem:.2f}%) — Área: ({i}:{i_end}, {j}:{j_end}) Tamanho: {tile.shape}")
+
+                tensor = torch.tensor(tile_padded, dtype=torch.float32).unsqueeze(0).unsqueeze(0).to("cuda" if torch.cuda.is_available() else "cpu")
+                output = model(tensor).squeeze(0).cpu().numpy()[:, :tile.shape[0], :tile.shape[1]]
+                predicted = np.argmax(output, axis=0).astype(np.uint8)
+                predicted_mask[i:i_end, j:j_end] = predicted
+
+                # Log das classes detectadas
+                classes_presentes = np.unique(predicted)
+                print(f"📊 Classes detectadas: {classes_presentes.tolist()}")
+
+                for label, color in COLORS.items():
+                    ys, xs = np.where(predicted == label)
+                    for y, x in zip(ys, xs):
+                        draw.point((j + x, i + y), fill=color)
+
+    print("✅ Predição finalizada.")
+    return predicted_mask, rgba_image
+
+    h, w = ndvi.shape
+    print(f"📏 Dimensões da imagem: {h} x {w}")
+    model = load_model(model_path)
+    predicted_mask = np.zeros((h, w), dtype=np.uint8)
+    rgba_image = Image.new("RGBA", (w, h))
+    draw = ImageDraw.Draw(rgba_image)
+
+    print("🔄 Modelo carregado, iniciando varredura por tiles...")
+
     with torch.no_grad():
         for i in range(0, h, stride):
             for j in range(0, w, stride):
