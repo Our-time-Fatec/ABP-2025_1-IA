@@ -4,6 +4,9 @@ from typing import Optional
 from PIL import Image
 import io
 
+# Permite imagens grandes (acima de ~170 MP). Útil se você confiar na origem da imagem.
+Image.MAX_IMAGE_PIXELS = None
+
 def comprimir_imagem(imagem_path: str, qualidade: int = 70, max_lado: int = 1024) -> io.BytesIO:
     """Comprime a imagem redimensionando e salvando em JPEG."""
     img = Image.open(imagem_path)

@@ -3,7 +3,7 @@ from app.services.process.pipeline import processar_imagem_completa
 from app.controllers.upload import enviar_imagem_para_servico
 
 async def process_upload_image(data: MLProcessRequest) -> dict:
-    result = await processar_imagem_completa(data)
+    result = await processar_imagem_completa(data) # type: ignore
 
     # 🔁 Após pipeline, envie a imagem para outro serviço
     destino_url = "http://localhost:3030/upload"
