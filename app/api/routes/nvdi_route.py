@@ -31,4 +31,4 @@ async def ndvi_upload(data: MLProcessRequest):
             "resposta_envio": path["resposta_envio"]
         }
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        raise HTTPException(status_code=500, detail=str(e)) 
