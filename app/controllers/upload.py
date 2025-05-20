@@ -20,7 +20,7 @@ def comprimir_imagem(imagem_path: str, qualidade: int = 70, max_lado: int = 1024
     img_bytes.seek(0)
     return img_bytes
 
-def enviar_imagem_para_servico(destino_url: str, imagem_path: str, dados_extra: Optional[dict] = None):
+def enviar_imagem_para_servico(destino_url: str, imagem_path: str, dados_extra: Optional[dict] = None, query_params: Optional[dict] = None, headers=None) -> requests.Response:
     print(f"🚀 Enviando imagem para {destino_url}...")
 
     imagem_comprimida = comprimir_imagem(imagem_path)
@@ -33,12 +33,7 @@ def enviar_imagem_para_servico(destino_url: str, imagem_path: str, dados_extra: 
         )
     }
 
-    response = requests.post(
-        destino_url,
-        data=dados_extra or {},
-        files=files,
-        timeout=30  
-    )
+    response = requests.post(destino_url, data=dados_extra, files=files, params=query_params, headers=headers)
 
     print(f"📬 Resposta do serviço: {response.status_code} - {response.text}")
     return response
