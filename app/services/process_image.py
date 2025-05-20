@@ -7,6 +7,7 @@ async def process_upload_image(data: MLProcessRequest, job_id: str) -> dict:
     result = await processar_imagem_completa(data)  # NDVI + geração de imagem
 
     # 🔁 Consultar status atual
+    job_manager.update_job(job_id, "complete", result)
     job_info = job_manager.get_job(job_id)
     if not job_info:
         raise ValueError(f"Job with id {job_id} not found.")
