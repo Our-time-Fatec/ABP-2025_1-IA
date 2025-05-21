@@ -13,7 +13,7 @@ async def process_upload_image(data: MLProcessRequest, job_id: str) -> dict:
         raise ValueError(f"Job with id {job_id} not found.")
     status = job_info["status"]
 
-    destino_url = "http://localhost:3030/upload/v2"
+    destino_url = "http://localhost:3030/cicatriz/finalize"
     query_params = {
         "jobId": job_id,
         "status": status
