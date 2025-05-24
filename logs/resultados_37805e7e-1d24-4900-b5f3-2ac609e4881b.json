@@ -1,0 +1,50 @@
+{
+  "id": "37805e7e-1d24-4900-b5f3-2ac609e4881b",
+  "job_id": "8b270ed6-b8b1-403d-8959-0b8b8db8148d",
+  "status": "completed",
+  "resultados_pipeline": {
+    "bbox_real": [
+      -63008.0,
+      8474944.0,
+      983008.0,
+      9372992.0
+    ],
+    "ndvi_stats": {
+      "min": -0.5407854914665222,
+      "max": 0.8058252334594727,
+      "mean": 0.035256315022706985,
+      "std": 0.10472293943166733,
+      "pct_acima_0_5": 0.6903531212623019
+    },
+    "area_stats": {
+      "total_area_m2": 939372576768.0,
+      "total_area_ha": 93937257.6768,
+      "por_classe": {
+        "0": {
+          "pixels": 115912539,
+          "area_m2": 474777759744.0,
+          "area_ha": 47477775.9744
+        },
+        "1": {
+          "pixels": 25449287,
+          "area_m2": 104240279552.0,
+          "area_ha": 10424027.9552
+        },
+        "2": {
+          "pixels": 36664537,
+          "area_m2": 150177943552.0,
+          "area_ha": 15017794.3552
+        },
+        "3": {
+          "pixels": 51312645,
+          "area_m2": 210176593920.0,
+          "area_ha": 21017659.392
+        }
+      }
+    }
+  },
+  "resposta_envio": {
+    "status_code": 200,
+    "resposta_texto": "{\"message\":\"Upload realizado com sucesso\"}"
+  }
+}

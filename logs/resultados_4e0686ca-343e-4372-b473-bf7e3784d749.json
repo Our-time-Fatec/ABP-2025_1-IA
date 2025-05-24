@@ -1,0 +1,103 @@
+{
+  "id": "4e0686ca-343e-4372-b473-bf7e3784d749",
+  "job_id": "d54d8dc2-fdbd-4d41-8cae-a92e38d4417e",
+  "status": "completed",
+  "resultados_pipeline": {
+    "bbox_real": [
+      -191264.0,
+      7881920.0,
+      853920.0,
+      8778432.0
+    ],
+    "ndvi_stats": {
+      "min": -0.42046302556991577,
+      "max": 0.8983891010284424,
+      "mean": 0.02138538472354412,
+      "std": 0.09123625606298447,
+      "pct_acima_0_5": 0.5988364076253601,
+      "histogram": [
+        {
+          "range": [
+            -1.0,
+            -0.5
+          ],
+          "count": 0
+        },
+        {
+          "range": [
+            -0.5,
+            0.0
+          ],
+          "count": 62273001
+        },
+        {
+          "range": [
+            0.0,
+            0.2
+          ],
+          "count": 154129126
+        },
+        {
+          "range": [
+            0.2,
+            0.4
+          ],
+          "count": 9108254
+        },
+        {
+          "range": [
+            0.4,
+            0.6
+          ],
+          "count": 2878768
+        },
+        {
+          "range": [
+            0.6,
+            1.0
+          ],
+          "count": 375499
+        }
+      ]
+    },
+    "area_stats": {
+      "total_area_m2": 937019998208.0,
+      "total_area_ha": 93701999.8208,
+      "por_classe": {
+        "0": {
+          "pixels": 139393324,
+          "area_m2": 570955055104.0,
+          "area_ha": 57095505.5104,
+          "area_km2": 570955.055104
+        },
+        "1": {
+          "pixels": 27030057,
+          "area_m2": 110715113472.0,
+          "area_ha": 11071511.3472,
+          "area_km2": 110715.113472
+        },
+        "2": {
+          "pixels": 27617713,
+          "area_m2": 113122152448.0,
+          "area_ha": 11312215.2448,
+          "area_km2": 113122.152448
+        },
+        "3": {
+          "pixels": 34723554,
+          "area_m2": 142227677184.0,
+          "area_ha": 14222767.7184,
+          "area_km2": 142227.677184
+        }
+      },
+      "summary": {
+        "total_area_km2": 937020.0,
+        "burned_area_km2": 110715.11,
+        "burned_percent": 11.82
+      }
+    }
+  },
+  "resposta_envio": {
+    "status_code": 200,
+    "resposta_texto": "{\"message\":\"Upload realizado com sucesso\"}"
+  }
+}

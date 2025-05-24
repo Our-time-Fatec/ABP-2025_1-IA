@@ -5,6 +5,7 @@ from app.utils.download_util import baixar_arquivo
 from app.services.process.nvdi import compute_ndvi
 from app.services.process.visualization import save_ndvi_preview
 from app.services.process.segmentation import run_model
+from app.services.process.nvdi_data import calcular_estatisticas_ndvi, calcular_area_por_classe
 
 async def processar_imagem_completa(data: MLProcessRequest):
     
@@ -24,15 +25,16 @@ async def processar_imagem_completa(data: MLProcessRequest):
 
     tif_final, png_final = run_model(ndvi_tif, data.id)
 
+    ndvi_stats = calcular_estatisticas_ndvi(ndvi_tif)
+    area_stats = calcular_area_por_classe(tif_final)
+
     with rasterio.open(tif_final) as src:
         bounds = src.bounds
         real_bbox = [bounds.left, bounds.bottom, bounds.right, bounds.top]
         
         
-
     return {
-        "preview_png": f"/output/{data.id}_rgb.png",
-        "preview_tif": f"/output/{data.id}_classes.tif",
-        "bbox": data.bbox,
-        "bbox_real": real_bbox
+    "bbox_real": real_bbox,
+    "ndvi_stats": ndvi_stats,
+    "area_stats": area_stats
     }
