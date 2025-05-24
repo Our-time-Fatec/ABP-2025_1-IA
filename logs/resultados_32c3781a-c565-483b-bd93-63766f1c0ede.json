@@ -1,0 +1,25 @@
+{
+  "id": "32c3781a-c565-483b-bd93-63766f1c0ede",
+  "job_id": "3001ca94-0d67-4b66-b182-10c418ec96ef",
+  "status": "complete",
+  "resultados_pipeline": {
+    "preview_png": "/output/32c3781a-c565-483b-bd93-63766f1c0ede_rgb.png",
+    "preview_tif": "/output/32c3781a-c565-483b-bd93-63766f1c0ede_classes.tif",
+    "bbox": [
+      -62.201333,
+      -13.740019,
+      -52.642359,
+      -5.650288
+    ],
+    "bbox_real": [
+      -63008.0,
+      8474944.0,
+      983008.0,
+      9372992.0
+    ]
+  },
+  "resposta_envio": {
+    "status_code": 400,
+    "resposta_texto": "{\"statusCode\":400,\"code\":\"FST_ERR_VALIDATION\",\"error\":\"Bad Request\",\"message\":\"querystring/status Invalid enum value. Expected 'pending' | 'processing' | 'completed' | 'failed', received 'complete'\"}"
+  }
+}

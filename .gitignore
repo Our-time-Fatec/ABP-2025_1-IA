@@ -23,8 +23,9 @@ pip-wheel-metadata/
 
 # Dados e saídas geradas
 output/
-src/data/raw/
-src/data/processed/
+app/data/raw/
+app/data/processed/
+logs/
 *.tif
 *.png
 *.jpg

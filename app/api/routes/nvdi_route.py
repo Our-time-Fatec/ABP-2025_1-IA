@@ -2,6 +2,7 @@ from fastapi import APIRouter, HTTPException
 from app.schemas.schemas import NDVIInput, MLProcessRequest
 from app.controllers.testing.nvdi import run_ndvi_pipeline
 from app.services.process.pipeline import processar_imagem_completa
+from app.services.testing.process_image import process_upload_image_mock
 from app.services.process_image import process_upload_image
 import uuid
 from fastapi.responses import JSONResponse
@@ -57,3 +58,19 @@ async def ndvi_upload_job(data: MLProcessRequest):
         status="processing",
         message="Processamento iniciado com sucesso."
     )
+
+
+@router.post("/v3/mock")
+async def nvdi_test(data: MLProcessRequest):
+    
+    job_id = str(uuid.uuid4())
+    job_manager.create_job(job_id)
+    
+    try:
+        path = await process_upload_image_mock(data, job_id)
+        return {
+            "resultados_pipeline": path["resultados_pipeline"],
+            "resposta_envio": path["resposta_envio"]
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))

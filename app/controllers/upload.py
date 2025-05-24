@@ -4,15 +4,11 @@ from typing import Optional
 from PIL import Image
 import io
 
-# Permite imagens grandes (acima de ~170 MP). Útil se você confiar na origem da imagem.
 Image.MAX_IMAGE_PIXELS = None
 
 def comprimir_imagem(imagem_path: str, qualidade: int = 70, max_lado: int = 1024) -> io.BytesIO:
-    """Comprime a imagem redimensionando e salvando em JPEG."""
     img = Image.open(imagem_path)
-    img = img.convert("RGB")  # Garante que está no modo compatível com JPEG
-
-    # Redimensiona a imagem, mantendo a proporção
+    img = img.convert("RGB")
     img.thumbnail((max_lado, max_lado))
 
     img_bytes = io.BytesIO()
@@ -20,7 +16,13 @@ def comprimir_imagem(imagem_path: str, qualidade: int = 70, max_lado: int = 1024
     img_bytes.seek(0)
     return img_bytes
 
-def enviar_imagem_para_servico(destino_url: str, imagem_path: str, dados_extra: Optional[dict] = None, query_params: Optional[dict] = None, headers=None) -> requests.Response:
+async def enviar_imagem_para_servico(
+    destino_url: str,
+    imagem_path: str,
+    dados_extra: Optional[dict] = None,  # Estes campos virarão campos do formulário
+    query_params: Optional[dict] = None,
+    headers=None
+) -> requests.Response:
     print(f"🚀 Enviando imagem para {destino_url}...")
 
     imagem_comprimida = comprimir_imagem(imagem_path)
@@ -32,8 +34,36 @@ def enviar_imagem_para_servico(destino_url: str, imagem_path: str, dados_extra: 
             "image/jpeg"
         )
     }
+    
+    print(dados_extra)
 
-    response = requests.post(destino_url, data=dados_extra, files=files, params=query_params, headers=headers)
+    response = requests.post(
+        destino_url,
+        json=dados_extra,   # ← campos de formulário além do arquivo (ex: jobId, status)
+        files=files,
+        params=query_params,
+        headers=headers
+    )
+
+    print(f"📬 Resposta do serviço: {response.status_code} - {response.text}")
+    return response
+
+async def enviar_dados_para_servico(
+    destino_url: str,
+    dados_extra: Optional[dict] = None,  # Campos do formulário
+    query_params: Optional[dict] = None,
+    headers=None
+) -> requests.Response:
+    print(f"🚀 Enviando dados para {destino_url}...")
+    
+    print(dados_extra)
+
+    response = requests.post(
+        destino_url,
+        json=dados_extra, 
+        params=query_params,
+        headers=headers
+    )
 
     print(f"📬 Resposta do serviço: {response.status_code} - {response.text}")
     return response
