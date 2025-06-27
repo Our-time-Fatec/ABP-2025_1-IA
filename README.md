@@ -24,7 +24,7 @@ ABP-2025_1-IA/
 ### 1. Clone o repositório
 
 ```bash
-git clone https://github.com/seu-usuario/ABP-2025_1-IA.git
+git clone https://github.com/Our-time-Fatec/ABP-2025_1-IA.git
 cd ABP-2025_1-IA
 ```
 
@@ -88,4 +88,4 @@ Sinta-se livre para abrir *Issues* e *Pull Requests*. Toda contribuição é bem
 
 ## 📜 Licença
 
-Este projeto é acadêmico e de uso educacional. Direitos reservados aos integrantes do grupo ABP-2025.
+Este projeto é acadêmico e de uso educacional. Direitos reservados aos integrantes do grupo DaVinci Codes.
