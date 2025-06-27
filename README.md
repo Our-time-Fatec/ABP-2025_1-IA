@@ -55,7 +55,7 @@ A aplicação estará disponível em: [http://127.0.0.1:8000](http://127.0.0.1:8
 | Método | Rota      | Descrição                                   |
 | ------ | --------- | ------------------------------------------- |
 | GET    | `/status` | Verifica o status da aplicação              |
-| POST   | `/nvdi`   | Processa uma imagem e retorna o índice NDVI |
+| POST   | `/nvdi/v3`   | Processa uma imagem e retorna a imagem processada e todos seus dados de analytics |
 
 Documentação Swagger disponível em:
 `http://127.0.0.1:8000/docs`
